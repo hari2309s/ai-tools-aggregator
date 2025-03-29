@@ -13,6 +13,8 @@
   background-color: var(--background-secondary, #f5f5f5);
   border-bottom: 1px solid var(--border-color);
   flex: 0 0 auto;
+  height: 50px; /* Set fixed height to match sidebar header */
+  box-sizing: border-box;
   
   h2 {
     margin: 0;
@@ -24,6 +26,17 @@
   .header-actions {
     display: flex;
     gap: 8px;
+    
+    button {
+      color: var(--text-secondary, #666666);
+    }
+    
+    .material-icons {
+      font-size: 16px;
+      height: 16px;
+      width: 16px;
+      line-height: 16px;
+    }
   }
 }
 

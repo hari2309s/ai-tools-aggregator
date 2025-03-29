@@ -11,18 +11,20 @@
 }
 
 .sidebar-header {
-  padding: 16px;
+  padding: 12px 16px; /* Match chat header padding */
   border-bottom: 1px solid #3a3a3a;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--sidebar-header-bg);
   transition: padding 0.3s ease;
+  height: 50px; /* Set fixed height to match chat header */
+  box-sizing: border-box;
 }
 
 .app-title {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px; /* Slightly smaller for a more relaxed look */
+  font-weight: 500; /* Match chat header font weight */
   color: var(--sidebar-text);
   text-align: center;
   transition: font-size 0.3s ease;
@@ -35,6 +37,7 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
+  justify-content: space-between; /* Ensures proper vertical distribution */
 }
 
 .new-chat-button {
@@ -68,7 +71,7 @@
 
 /* Sidebar sections */
 .sidebar-section {
-  margin-bottom: 16px;
+  margin-bottom: 24px; /* Increased spacing between sections */
 }
 
 .section-header {
@@ -108,6 +111,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding: 4px 0; /* Add vertical padding to section content */
 }
 
 .empty-section {
@@ -124,6 +128,7 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  margin-bottom: 2px; /* Add consistent spacing between items */
 }
 
 .sidebar-item:hover {
@@ -147,18 +152,20 @@
 .sidebar-footer {
   margin-top: auto;
   padding-top: 16px;
+  padding-bottom: 16px; /* Added bottom padding */
   transition: all 0.3s ease;
 }
 
 .settings-button {
   display: flex;
   align-items: center;
-  padding: 8px;
+  padding: 8px 12px;
   cursor: pointer;
   border-radius: 4px;
   color: var(--sidebar-text);
   font-size: 14px;
   transition: all 0.3s ease;
+  margin-left: 4px; /* Align with other sidebar items */
 }
 
 .settings-button:hover {
