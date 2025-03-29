@@ -1,0 +1,375 @@
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-background);
+  border-right: 1px solid var(--sidebar-background);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.sidebar-header {
+  padding: 16px;
+  border-bottom: 1px solid #3a3a3a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--sidebar-header-bg);
+  transition: padding 0.3s ease;
+}
+
+.app-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--sidebar-text);
+  text-align: center;
+  transition: font-size 0.3s ease;
+}
+
+.sidebar-content {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.new-chat-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background-color: var(--new-chat-bg);
+  border: 1px solid #3a3a3a;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  color: var(--sidebar-text);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.new-chat-button:hover {
+  background-color: var(--button-hover);
+  opacity: 0.9;
+}
+
+.new-chat-button .material-icons {
+  margin-right: 8px;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  color: var(--sidebar-text);
+  transition: all 0.3s ease;
+}
+
+/* Sidebar sections */
+.sidebar-section {
+  margin-bottom: 16px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4px;
+  margin-bottom: 4px;
+}
+
+.section-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-service-button {
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-service-button .material-icons {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.empty-section {
+  font-size: 12px;
+  color: #777;
+  padding: 8px 4px;
+  font-style: italic;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-item .material-icons {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  margin-right: 8px;
+  color: var(--sidebar-text);
+}
+
+.item-text {
+  font-size: 14px;
+  color: var(--sidebar-text);
+}
+
+/* Sidebar footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  transition: all 0.3s ease;
+}
+
+.settings-button {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--sidebar-text);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.settings-button:hover {
+  background-color: var(--button-hover);
+}
+
+.settings-button .material-icons {
+  margin-right: 8px;
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  color: var(--sidebar-text);
+  transition: all 0.3s ease;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 60px;
+    flex-direction: row;
+    align-items: center;
+    border-right: none;
+    border-bottom: 1px solid #3a3a3a;
+    justify-content: space-between;
+    position: relative;
+  }
+  
+  .sidebar-header {
+    padding: 8px 16px;
+    border-bottom: none;
+    width: auto;
+    flex-shrink: 0;
+  }
+  
+  .app-title {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  
+  .sidebar-content {
+    flex-direction: row;
+    align-items: center;
+    padding: 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex: 1;
+    justify-content: flex-start;
+  }
+  
+  .new-chat-button {
+    margin-bottom: 0;
+    margin-right: 12px;
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  .new-chat-button .material-icons {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+  }
+  
+  /* Show mobile menu button */
+  .sidebar-section {
+    display: block;
+    margin-bottom: 0;
+    margin-right: 12px;
+    position: relative;
+  }
+  
+  .section-header {
+    padding: 6px 10px;
+    margin-bottom: 0;
+    background-color: var(--new-chat-bg);
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .section-title {
+    font-size: 12px;
+    color: var(--sidebar-text);
+    text-transform: none;
+    letter-spacing: normal;
+    font-weight: normal;
+  }
+  
+  .section-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background-color: var(--sidebar-background);
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    z-index: 100;
+    padding: 8px;
+    margin-top: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar-section:hover .section-content {
+    display: flex;
+  }
+  
+  .add-service-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .sidebar-footer {
+    margin-top: 0;
+    padding-top: 0;
+    margin-left: 8px;
+    padding-right: 8px;
+    flex-shrink: 0;
+  }
+  
+  .settings-button {
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .settings-button .material-icons {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .sidebar {
+    max-height: 50px;
+    padding: 0 8px;
+  }
+  
+  .sidebar-header {
+    padding: 8px 4px 8px 8px;
+  }
+  
+  .app-title {
+    font-size: 14px;
+  }
+  
+  .sidebar-content {
+    padding: 0 4px;
+  }
+  
+  .new-chat-button .button-text,
+  .settings-button .button-text,
+  .section-title {
+    display: none;
+  }
+  
+  .new-chat-button .material-icons,
+  .settings-button .material-icons {
+    margin-right: 0;
+  }
+  
+  .new-chat-button,
+  .settings-button,
+  .section-header {
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  
+  .section-header {
+    position: relative;
+  }
+  
+  .section-header::after {
+    content: '';
+    font-family: 'Material Icons';
+    font-size: 16px;
+  }
+  
+  .sidebar-section:first-of-type .section-header::after {
+    content: 'add_circle';
+  }
+  
+  .sidebar-section:last-of-type .section-header::after {
+    content: 'history';
+  }
+  
+  .add-service-button {
+    display: none;
+  }
+  
+  .sidebar-footer {
+    margin-left: 4px;
+    padding-right: 4px;
+  }
+  
+  /* Make dropdown wider on mobile */
+  .section-content {
+    width: 180px;
+    left: -70px;
+  }
+}

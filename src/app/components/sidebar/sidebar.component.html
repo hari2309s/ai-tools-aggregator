@@ -1,0 +1,58 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="app-title">AI Aggregator</div>
+  </div>
+  
+  <div class="sidebar-content">
+    <button class="new-chat-button" (click)="onNewChat()">
+      <span class="material-icons">add</span>
+      <span class="button-text">New Chat</span>
+    </button>
+    
+    <!-- Available Services Section -->
+    <div class="sidebar-section">
+      <div class="section-header">
+        <span class="section-title">Available Services</span>
+        <button class="add-service-button" (click)="openAddServiceDialog()">
+          <span class="material-icons">add_circle</span>
+        </button>
+      </div>
+      
+      <div class="section-content">
+        <div *ngIf="availableServices.length === 0" class="empty-section">
+          No services added yet
+        </div>
+        
+        <div *ngFor="let service of availableServices" class="sidebar-item">
+          <span class="material-icons">{{ service.icon }}</span>
+          <span class="item-text">{{ service.name }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Chat History Section -->
+    <div class="sidebar-section">
+      <div class="section-header">
+        <span class="section-title">Chat History</span>
+      </div>
+      
+      <div class="section-content">
+        <div *ngIf="chatHistory.length === 0" class="empty-section">
+          No chat history
+        </div>
+        
+        <div *ngFor="let chat of chatHistory" class="sidebar-item">
+          <span class="material-icons">chat</span>
+          <span class="item-text">{{ chat.title }}</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="sidebar-footer">
+      <div class="settings-button">
+        <span class="material-icons">settings</span>
+        <span class="button-text">Settings</span>
+      </div>
+    </div>
+  </div>
+</div>

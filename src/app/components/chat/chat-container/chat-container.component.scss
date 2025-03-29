@@ -1,0 +1,219 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Use viewport height to ensure it fills the entire height */
+  background-color: var(--main-background);
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: var(--background-secondary, #f5f5f5);
+  border-bottom: 1px solid var(--border-color);
+  flex: 0 0 auto;
+  
+  h2 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+  
+  .header-actions {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.chat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--main-background);
+  position: relative; /* Add position relative for absolute positioning of children */
+}
+
+.message-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 70px; /* Leave space for the input area at the bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* This centers content vertically */
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.empty-state {
+  text-align: center;
+  max-width: 600px;
+  
+  h2 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #666666;
+    margin: 0 0 8px 0;
+  }
+  
+  p {
+    font-size: 14px;
+    color: #888888;
+    margin: 0;
+  }
+}
+
+.message-list-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;  /* Minimum height for desktop mode */
+  padding-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-area {
+  flex: 0 0 auto;
+  padding: 16px;
+  background-color: var(--main-background);
+  border-top: 1px solid var(--border-color, #f0f0f0);
+  z-index: 10;
+}
+
+.services-bar {
+  padding: 12px 16px;
+  background-color: var(--main-background);
+  border-bottom: 1px solid var(--border-color);
+  flex: 0 0 auto;
+}
+
+.service-chips {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.message-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+::ng-deep .mat-mdc-chip {
+  background-color: var(--selected-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+::ng-deep .mat-mdc-chip-action {
+  color: var(--text-primary) !important;
+}
+
+::ng-deep .mat-mdc-chip mat-icon {
+  color: var(--highlight-color) !important;
+}
+
+::ng-deep .mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: var(--highlight-color);
+}
+
+/* Empty state styles */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.empty-state-content {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-state h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #666666;
+  margin: 0 0 8px 0;
+}
+
+.empty-state p {
+  font-size: 14px;
+  color: #888888;
+  margin: 0;
+}
+
+/* Mobile responsive styles for empty state */
+@media (max-width: 768px) {
+  .empty-state h2 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .empty-state h2 {
+    font-size: 15px;
+  }
+  
+  .empty-state p {
+    font-size: 12px;
+  }
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .chat-header {
+    padding: 12px 16px;
+    
+    h1 {
+      font-size: 18px;
+    }
+  }
+  
+  .message-list-container {
+    padding-bottom: 70px; /* Space for fixed input on mobile */
+  }
+  
+  .message-input-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--main-background);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .chat-header {
+    padding: 10px 12px;
+    
+    h1 {
+      font-size: 16px;
+    }
+  }
+  
+  .message-list-container {
+    padding-bottom: 60px; /* Adjusted space for smaller fixed input */
+  }
+  
+  .message-input-container {
+    padding: 8px 10px;
+  }
+}
