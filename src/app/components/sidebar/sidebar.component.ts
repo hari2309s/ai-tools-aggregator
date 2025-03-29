@@ -21,6 +21,7 @@ import { AddServiceDialogComponent } from '../services/add-service-dialog/add-se
 })
 export class SidebarComponent {
   @Output() newChat = new EventEmitter<void>();
+  isCollapsed = false; // Track sidebar collapse state
   
   // Sample data for available services
   availableServices: any[] = [
@@ -40,6 +41,10 @@ export class SidebarComponent {
   
   onNewChat(): void {
     this.newChat.emit();
+  }
+  
+  toggleSidebar(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
   
   openAddServiceDialog(): void {

@@ -8,18 +8,41 @@
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
+  
+  &.collapsed {
+    width: 60px;
+    align-items: center;
+    background-color: #2a2a2a; /* Darker background to match screenshot */
+  }
 }
 
 .sidebar-header {
   padding: 12px 16px; /* Match chat header padding */
   border-bottom: 1px solid #3a3a3a;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: var(--sidebar-header-bg);
   transition: padding 0.3s ease;
   height: 50px; /* Set fixed height to match chat header */
   box-sizing: border-box;
+  
+  .toggle-button {
+    background: none;
+    border: none;
+    color: var(--sidebar-text);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+  
+  .collapsed & {
+    padding: 12px 8px;
+    justify-content: center;
+  }
 }
 
 .app-title {
@@ -27,7 +50,11 @@
   font-weight: 500; /* Match chat header font weight */
   color: var(--sidebar-text);
   text-align: center;
-  transition: font-size 0.3s ease;
+  transition: all 0.3s ease;
+  
+  &.hidden {
+    display: none;
+  }
 }
 
 .sidebar-content {
@@ -37,7 +64,13 @@
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  justify-content: space-between; /* Ensures proper vertical distribution */
+  justify-content: flex-start; /* Changed to flex-start for better vertical spacing */
+  
+  .collapsed & {
+    padding: 0;
+    overflow-x: hidden;
+    align-items: center;
+  }
 }
 
 .new-chat-button {
@@ -53,6 +86,25 @@
   color: var(--sidebar-text);
   font-size: 14px;
   transition: all 0.3s ease;
+  
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .collapsed & {
+    padding: 16px 0;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+  }
+  
+  .button-text.hidden {
+    display: none;
+  }
 }
 
 .new-chat-button:hover {
@@ -62,16 +114,24 @@
 
 .new-chat-button .material-icons {
   margin-right: 8px;
-  font-size: 18px;
-  height: 18px;
-  width: 18px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
   color: var(--sidebar-text);
   transition: all 0.3s ease;
+  
+  .collapsed & {
+    margin-right: 0;
+  }
 }
 
 /* Sidebar sections */
 .sidebar-section {
-  margin-bottom: 24px; /* Increased spacing between sections */
+  margin-bottom: 16px; /* Adjusted spacing between sections */
+  
+  .collapsed & {
+    margin-bottom: 8px; /* Less spacing in collapsed mode */
+  }
 }
 
 .section-header {
@@ -80,6 +140,15 @@
   align-items: center;
   padding: 8px 4px;
   margin-bottom: 4px;
+  
+  .collapsed & {
+    justify-content: center;
+    padding: 8px 0;
+    
+    .section-title {
+      display: none;
+    }
+  }
 }
 
 .section-title {
@@ -99,12 +168,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .add-service-button .material-icons {
-  font-size: 16px;
-  height: 16px;
-  width: 16px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 .section-content {
@@ -128,7 +202,23 @@
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  margin-bottom: 2px; /* Add consistent spacing between items */
+  margin-bottom: 8px; /* Increased spacing between items */
+  
+  .collapsed & {
+    padding: 16px 0;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    
+    .item-text {
+      display: none;
+    }
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
 }
 
 .sidebar-item:hover {
@@ -136,11 +226,15 @@
 }
 
 .sidebar-item .material-icons {
-  font-size: 16px;
-  height: 16px;
-  width: 16px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
   margin-right: 8px;
   color: var(--sidebar-text);
+  
+  .collapsed & {
+    margin-right: 0;
+  }
 }
 
 .item-text {
@@ -154,6 +248,12 @@
   padding-top: 16px;
   padding-bottom: 16px; /* Added bottom padding */
   transition: all 0.3s ease;
+  
+  .collapsed & {
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+  }
 }
 
 .settings-button {
@@ -166,6 +266,24 @@
   font-size: 14px;
   transition: all 0.3s ease;
   margin-left: 4px; /* Align with other sidebar items */
+  
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .collapsed & {
+    padding: 16px 0;
+    justify-content: center;
+    margin-left: 0;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .button-text.hidden {
+    display: none;
+  }
 }
 
 .settings-button:hover {
@@ -174,11 +292,15 @@
 
 .settings-button .material-icons {
   margin-right: 8px;
-  font-size: 18px;
-  height: 18px;
-  width: 18px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
   color: var(--sidebar-text);
   transition: all 0.3s ease;
+  
+  .collapsed & {
+    margin-right: 0;
+  }
 }
 
 /* Mobile responsive styles */
