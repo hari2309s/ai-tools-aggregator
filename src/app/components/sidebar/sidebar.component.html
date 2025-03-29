@@ -1,12 +1,15 @@
-<div class="sidebar">
+<div class="sidebar" [class.collapsed]="isCollapsed">
   <div class="sidebar-header">
-    <div class="app-title">AI Aggregator</div>
+    <div class="app-title" [class.hidden]="isCollapsed">AI Aggregator</div>
+    <button class="toggle-button" (click)="toggleSidebar()">
+      <span class="material-icons">{{ isCollapsed ? 'menu' : 'menu_open' }}</span>
+    </button>
   </div>
   
   <div class="sidebar-content">
-    <button class="new-chat-button" (click)="onNewChat()">
+    <button class="new-chat-button disabled" disabled title="New chat functionality not supported yet">
       <span class="material-icons">add</span>
-      <span class="button-text">New Chat</span>
+      <span class="button-text" [class.hidden]="isCollapsed">New Chat</span>
     </button>
     
     <!-- Available Services Section -->
@@ -49,9 +52,9 @@
     </div>
     
     <div class="sidebar-footer">
-      <div class="settings-button">
+      <div class="settings-button disabled" title="Settings not supported yet">
         <span class="material-icons">settings</span>
-        <span class="button-text">Settings</span>
+        <span class="button-text" [class.hidden]="isCollapsed">Settings</span>
       </div>
     </div>
   </div>
