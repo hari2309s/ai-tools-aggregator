@@ -2,41 +2,54 @@
 .sidebar {
   width: 250px;
   background-color: var(--sidebar-background);
-  border-right: 1px solid var(--sidebar-background);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
+  color: #ffffff;
   
   &.collapsed {
     width: 60px;
     align-items: center;
     background-color: #2a2a2a; /* Darker background to match screenshot */
   }
+  
+  .material-icons {
+    color: #e07a65;
+  }
 }
 
 .sidebar-header {
-  padding: 12px 16px; /* Match chat header padding */
-  border-bottom: 1px solid #3a3a3a;
+  padding: 12px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--sidebar-header-bg);
   transition: padding 0.3s ease;
-  height: 50px; /* Set fixed height to match chat header */
+  height: 50px;
   box-sizing: border-box;
+  border-bottom: 1px solid #3a3a3a;
   
   .toggle-button {
     background: none;
     border: none;
-    color: var(--sidebar-text);
     cursor: pointer;
     padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: auto;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .material-icons {
+      color: #e07a65;
+    }
   }
   
   .collapsed & {
@@ -48,7 +61,7 @@
 .app-title {
   font-size: 16px; /* Slightly smaller for a more relaxed look */
   font-weight: 500; /* Match chat header font weight */
-  color: var(--sidebar-text);
+  color: #ffffff;
   text-align: center;
   transition: all 0.3s ease;
   
@@ -59,15 +72,15 @@
 
 .sidebar-content {
   flex: 1;
-  padding: 12px;
+  padding: 32px 12px 12px 12px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  justify-content: flex-start; /* Changed to flex-start for better vertical spacing */
+  justify-content: flex-start;
   
   .collapsed & {
-    padding: 0;
+    padding: 32px 0 0 0;
     overflow-x: hidden;
     align-items: center;
   }
@@ -83,9 +96,13 @@
   border-radius: 4px;
   margin-bottom: 16px;
   cursor: pointer;
-  color: var(--sidebar-text);
+  color: #ffffff;
   font-size: 14px;
   transition: all 0.3s ease;
+  
+  .material-icons {
+    color: #e07a65;
+  }
   
   &.disabled {
     opacity: 0.5;
@@ -117,7 +134,7 @@
   font-size: 20px;
   height: 20px;
   width: 20px;
-  color: var(--sidebar-text);
+  color: #e07a65;
   transition: all 0.3s ease;
   
   .collapsed & {
@@ -127,10 +144,19 @@
 
 /* Sidebar sections */
 .sidebar-section {
-  margin-bottom: 16px; /* Adjusted spacing between sections */
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #3a3a3a;
+  
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
   
   .collapsed & {
-    margin-bottom: 8px; /* Less spacing in collapsed mode */
+    margin-bottom: 8px;
+    padding-bottom: 8px;
   }
 }
 
@@ -154,7 +180,7 @@
 .section-title {
   font-size: 12px;
   font-weight: 500;
-  color: #999;
+  color: rgba(255, 255, 255, 0.7);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -162,12 +188,24 @@
 .add-service-button {
   background: none;
   border: none;
-  color: var(--sidebar-text);
   cursor: pointer;
-  padding: 0;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .material-icons {
+    color: #e07a65;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
+  }
   
   &.disabled {
     opacity: 0.5;
@@ -185,12 +223,13 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 4px 0; /* Add vertical padding to section content */
+  padding: 4px 0;
+  width: 100%;
 }
 
 .empty-section {
   font-size: 12px;
-  color: #777;
+  color: rgba(255, 255, 255, 0.5);
   padding: 8px 4px;
   font-style: italic;
 }
@@ -201,58 +240,139 @@
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin-bottom: 8px; /* Increased spacing between items */
+  transition: all 0.2s ease;
+  color: #ffffff;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
   
-  .collapsed & {
-    padding: 16px 0;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  &.active {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
+  
+  .material-icons {
+    font-size: 20px;
+    opacity: 0.9;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
+    width: 20px;
+    height: 20px;
+    color: #e07a65;
+  }
+  
+  .item-text {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 20px;
     
-    .item-text {
+    .collapsed & {
       display: none;
     }
+  }
+  
+  .service-specializations {
+    font-size: 11px;
+    color: #e07a65;
+    margin-left: 8px;
+    padding: 2px 8px;
+    font-weight: 400;
+    line-height: 16px;
+    background-color: rgba(224, 122, 101, 0.1);
+    border-radius: 4px;
+    border: 1px solid rgba(224, 122, 101, 0.2);
     
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+    .collapsed & {
+      display: none;
     }
   }
 }
 
-.sidebar-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-item .material-icons {
-  font-size: 20px;
-  height: 20px;
-  width: 20px;
-  margin-right: 8px;
-  color: var(--sidebar-text);
+.service-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #ffffff;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 28px;
   
-  .collapsed & {
-    margin-right: 0;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
   }
-}
-
-.item-text {
-  font-size: 14px;
-  color: var(--sidebar-text);
+  
+  .service-icon {
+    font-size: 14px;
+    opacity: 0.9;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+  }
+  
+  .service-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 8px;
+    line-height: 10px;
+    color: #e07a65;
+    font-weight: 500;
+    
+    .collapsed & {
+      display: none;
+    }
+  }
+  
+  .service-type {
+    font-size: 7px;
+    color: #e07a65;
+    margin-left: auto;
+    padding-left: 8px;
+    flex-shrink: 0;
+    line-height: 10px;
+    opacity: 0.8;
+    font-weight: 500;
+    
+    .collapsed & {
+      display: none;
+    }
+  }
 }
 
 /* Sidebar footer */
 .sidebar-footer {
   margin-top: auto;
   padding-top: 16px;
-  padding-bottom: 16px; /* Added bottom padding */
+  padding-bottom: 16px;
   transition: all 0.3s ease;
+  border-top: 1px solid #3a3a3a;
   
   .collapsed & {
     display: flex;
     justify-content: center;
     padding-top: 8px;
+    
+    &::before {
+      left: 8px;
+      right: 8px;
+    }
   }
 }
 
@@ -262,10 +382,10 @@
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 4px;
-  color: var(--sidebar-text);
+  color: #ffffff;
   font-size: 14px;
   transition: all 0.3s ease;
-  margin-left: 4px; /* Align with other sidebar items */
+  margin-left: 4px;
   
   &.disabled {
     opacity: 0.5;
@@ -287,7 +407,7 @@
 }
 
 .settings-button:hover {
-  background-color: var(--button-hover);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .settings-button .material-icons {
@@ -295,7 +415,7 @@
   font-size: 20px;
   height: 20px;
   width: 20px;
-  color: var(--sidebar-text);
+  color: #e07a65;
   transition: all 0.3s ease;
   
   .collapsed & {
@@ -501,4 +621,19 @@
     width: 180px;
     left: -70px;
   }
+}
+
+/* Snackbar styles */
+::ng-deep .success-snackbar {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-snack-bar-action {
+  color: white !important;
 }

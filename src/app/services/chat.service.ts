@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Message, ChatSession, ChatResponse, AIService } from '../models/chat.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private apiUrl = 'http://localhost:3000/api'; // Update this with your actual API URL
+  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
@@ -24,6 +24,25 @@ export class ChatService {
   }
 
   getAvailableServices(): Observable<AIService[]> {
-    return this.http.get<AIService[]>(`${this.apiUrl}/chat/services`);
+    return this.http.get<{ services: AIService[] }>(`${this.apiUrl}/services`).pipe(
+      map(response => response.services)
+    );
+  }
+
+  addService(service: { provider: string; apiKey: string; model?: string }): Observable<AIService> {
+    const backendService = {
+      name: service.provider,
+      apiKey: service.apiKey
+    };
+    return this.http.post<{ message: string }>(`${this.apiUrl}/services`, backendService).pipe(
+      map(() => ({
+        name: service.provider,
+        capabilities: {
+          multimodal: false,
+          supportedLanguages: ['en'],
+          specializations: ['general']
+        }
+      }))
+    );
   }
 } 

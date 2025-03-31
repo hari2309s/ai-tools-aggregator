@@ -38,6 +38,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
-.angular/cache/19.2.5/client/.tsbuildinfo
-.angular/cache/19.2.5/client/angular-compiler.db
-.angular/cache/19.2.5/client/angular-compiler.db-lock
+.angular

@@ -7,7 +7,7 @@
   </div>
   
   <div class="sidebar-content">
-    <button class="new-chat-button disabled" disabled title="New chat functionality not supported yet">
+    <button class="new-chat-button" (click)="onNewChat()" disabled>
       <span class="material-icons">add</span>
       <span class="button-text" [class.hidden]="isCollapsed">New Chat</span>
     </button>
@@ -27,8 +27,11 @@
         </div>
         
         <div *ngFor="let service of availableServices" class="sidebar-item">
-          <span class="material-icons">{{ service.icon }}</span>
-          <span class="item-text">{{ service.name }}</span>
+          <span class="material-icons">{{ getIconForProvider(service?.name || '') }}</span>
+          <span class="item-text">{{ service?.name || 'Unknown Service' }}</span>
+          <span *ngIf="service?.capabilities?.specializations?.length" class="service-specializations">
+            {{ service?.capabilities?.specializations?.join(', ') || '' }}
+          </span>
         </div>
       </div>
     </div>
@@ -52,7 +55,7 @@
     </div>
     
     <div class="sidebar-footer">
-      <div class="settings-button disabled" title="Settings not supported yet">
+      <div class="settings-button" disabled>
         <span class="material-icons">settings</span>
         <span class="button-text" [class.hidden]="isCollapsed">Settings</span>
       </div>

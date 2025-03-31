@@ -1,10 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatRippleModule } from '@angular/material/core';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddServiceDialogComponent } from '../services/add-service-dialog/add-service-dialog.component';
+import { ChatService } from '../../services/chat.service';
+import { AIService } from '../../models/chat.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,21 +17,17 @@ import { AddServiceDialogComponent } from '../services/add-service-dialog/add-se
     MatIconModule,
     MatButtonModule,
     MatDialogModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSnackBarModule
   ],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   @Output() newChat = new EventEmitter<void>();
   isCollapsed = false; // Track sidebar collapse state
   
-  // Sample data for available services
-  availableServices: any[] = [
-    { id: '1', name: 'OpenAI', icon: 'smart_toy' },
-    { id: '2', name: 'Anthropic', icon: 'psychology' },
-    { id: '3', name: 'Google AI', icon: 'cloud' }
-  ];
+  availableServices: AIService[] = [];
   
   // Sample data for chat history
   chatHistory: any[] = [
@@ -37,7 +36,27 @@ export class SidebarComponent {
     { id: '3', title: 'Product roadmap', timestamp: new Date(Date.now() - 172800000) }
   ];
   
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private chatService: ChatService,
+    private snackBar: MatSnackBar
+  ) {}
+  
+  ngOnInit() {
+    this.loadAvailableServices();
+  }
+
+  loadAvailableServices() {
+    this.chatService.getAvailableServices().subscribe({
+      next: (services) => {
+        this.availableServices = services;
+      },
+      error: (error) => {
+        console.error('Error loading services:', error);
+        this.showError('Failed to load services');
+      }
+    });
+  }
   
   onNewChat(): void {
     this.newChat.emit();
@@ -55,13 +74,16 @@ export class SidebarComponent {
     
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Add the new service to the list
-        const newService = {
-          id: (this.availableServices.length + 1).toString(),
-          name: result.provider,
-          icon: this.getIconForProvider(result.provider)
-        };
-        this.availableServices.push(newService);
+        this.chatService.addService(result).subscribe({
+          next: (newService) => {
+            this.loadAvailableServices();
+            this.showSuccess('Service added successfully');
+          },
+          error: (error) => {
+            console.error('Error adding service:', error);
+            this.showError('Failed to add service');
+          }
+        });
       }
     });
   }
@@ -76,5 +98,23 @@ export class SidebarComponent {
       case 'replicate': return 'repeat';
       default: return 'api';
     }
+  }
+
+  private showSuccess(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar']
+    });
+  }
+
+  private showError(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['error-snackbar']
+    });
   }
 }

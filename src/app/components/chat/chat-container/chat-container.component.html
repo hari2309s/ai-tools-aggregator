@@ -1,7 +1,10 @@
 <div class="chat-container">
   <!-- Header with options -->
   <div class="chat-header">
-    <h2>{{ chatTitle || 'New Conversation' }}</h2>
+    <h2>
+      <span class="material-icons">chat</span>
+      {{ chatTitle || 'New Conversation' }}
+    </h2>
     <div class="header-actions">
       <button mat-icon-button>
         <span class="material-icons">delete_outline</span>
